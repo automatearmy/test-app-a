@@ -1,19 +1,21 @@
 'use client'
 // pages/index.js (in your test-app-a project)
-import { useEffect, useState } from 'react';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
-const Home = () => {
-  const [user, setUser] = useState(null);
+export default function Page({ session }) {
+
+  const supabase = createClientComponentClient();
+  const user = session?.user;
+
+  const userEmail = user?.email
 
   return (
     <div>
       {user ? (
-        <p>Welcome, {user.email} in test-app-a!</p>
+        <p>Welcome, {userEmail} in test-app-a!</p>
       ) : (
         <p>Please sign in to continue.</p>
       )}
     </div>
   );
 };
-
-export default Home;
