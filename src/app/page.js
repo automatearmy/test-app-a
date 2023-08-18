@@ -7,7 +7,12 @@ export default function Page({ session }) {
   const supabase = createClientComponentClient();
   const user = session?.user;
 
+  console.log("Supabase: " + supabase)
+  console.log("Session: " + session)
+
   const userEmail = user?.email
+
+  console.log("Session: " + session)
 
   return (
     <div>
