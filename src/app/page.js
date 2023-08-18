@@ -1,19 +1,26 @@
 'use client'
-// pages/index.js (in your test-app-a project)
+import { useEffect, useState } from 'react';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default function Page({ session }) {
+  const [user, setUser] = useState(null);
+  const [userEmail, setUserEmail] = useState(null);
 
-  const supabase = createClientComponentClient( { cookieOptions: {domain: "automatearmy.com", path: "/"} } );
-  const user = supabase.auth.getUser();
+  useEffect(() => {
+    async function fetchUserData() {
+      const supabase = createClientComponentClient({ cookieOptions: { domain: "automatearmy.com", path: "/" } });
 
-  console.log("Supabase: " + supabase)
-  console.log("Session: " + session)
-  console.log("User: " + user)
+      try {
+        const user = await supabase.auth.getUser();
+        setUser(user);
+        setUserEmail(user?.email);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    }
 
-  const userEmail = user?.email
-
-  console.log("Session: " + session)
+    fetchUserData();
+  }, []); // Empty dependency array to run the effect only once
 
   return (
     <div>
@@ -25,3 +32,4 @@ export default function Page({ session }) {
     </div>
   );
 };
+
