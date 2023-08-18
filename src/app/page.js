@@ -19,6 +19,10 @@ export default function Page({ session }) {
       }
     }
 
+    console.log("Supabase: " + supabase)
+    console.log("Session: " + session)
+    console.log("User: " + user)
+
     fetchUserData();
   }, []); // Empty dependency array to run the effect only once
 
