@@ -4,7 +4,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default function Page({ session }) {
 
-  const supabase = createClientComponentClient();
+  const supabase = createClientComponentClient( { cookieOptions: {domain: "automatearmy.com", path: "/"} } );
   const user = session?.user;
 
   console.log("Supabase: " + supabase)
