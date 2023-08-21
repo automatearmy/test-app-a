@@ -17,4 +17,10 @@ export async function middleware(req) {
     return NextResponse.redirect(new URL('https://auth.automatearmy.com/?redirect_url=https://a.automatearmy.com'))
   }
 
+  return res
+
+}
+
+export const config = {
+  matcher: ['/'],
 }
