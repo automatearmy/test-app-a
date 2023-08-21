@@ -12,6 +12,8 @@ export async function middleware(req) {
     data: { user },
   } = await supabase.auth.getUser()
 
+  console.log("User: " + user) 
+
   if(!user) {
     return NextResponse.redirect(new URL('https://auth.automatearmy.com/?redirect_url=https://a.automatearmy.com'))
   }
