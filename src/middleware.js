@@ -6,13 +6,11 @@ export async function middleware(req) {
   const supabase = createMiddlewareClient({ req, res }, { cookieOptions: {domain: "automatearmy.com", path: "/"} })
   await supabase.auth.getSession()
 
-  console.log('testing middleware')
-
   const {
     data: { user },
   } = await supabase.auth.getUser()
 
-  console.log("User: " + user) 
+  console.log("User in middleware: " + user) 
 
   if(!user) {
     return NextResponse.redirect(new URL('https://auth.automatearmy.com/?redirect_url=https://a.automatearmy.com'))

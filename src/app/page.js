@@ -25,7 +25,7 @@ export default function Page({ session }) {
   const userEmail = user?.email
 
   console.log("Session: " + session)
-  console.log("User: " + user)
+  console.dir("User: " + user)
 
   return (
     <div>
