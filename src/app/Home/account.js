@@ -1,16 +1,11 @@
 'use client'
 // pages/index.js (in your test-app-a project)
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { useEffect, useState } from 'react';
 import { Button } from '@mantine/core';
 
-export default async function Page() {
+export default function AccountPage() {
 
   const supabase = createClientComponentClient( { cookieOptions: {domain: "automatearmy.com", path: "/"} } );
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
 
   const user = session?.user;
 
