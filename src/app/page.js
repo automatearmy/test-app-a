@@ -11,12 +11,15 @@ export default function Page({ session }) {
     return user;
   };
 
-  const userEmail = getUserInfo()?.email;
+  const getUserEmail = async () => {
+    const user = await getUserInfo();
+    return user?.email;
+  };
 
   return (
     <div>
       {user ? (
-        <p>Welcome, {userEmail} in test-app-a!</p>
+        <p>Welcome, {getUserEmail} in test-app-a!</p>
       ) : (
         <p>Please sign in to continue.</p>
       )}
