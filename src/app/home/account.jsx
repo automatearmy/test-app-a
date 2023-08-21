@@ -3,10 +3,8 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Button } from '@mantine/core';
 
-export default function AccountPage() {
-
+export default function AccountPage({ session }) {
   const supabase = createClientComponentClient( { cookieOptions: {domain: "automatearmy.com", path: "/"} } );
-
   const user = session?.user;
 
   const handleSignOut = async () => {
