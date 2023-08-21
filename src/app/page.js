@@ -4,9 +4,14 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useEffect, useState } from 'react';
 import { Button } from '@mantine/core';
 
-export default function Page({ session }) {
+export default async function Page() {
 
   const supabase = createClientComponentClient( { cookieOptions: {domain: "automatearmy.com", path: "/"} } );
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
   const user = session?.user;
 
   const handleSignOut = async () => {
