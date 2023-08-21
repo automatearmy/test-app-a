@@ -6,22 +6,16 @@ import { useEffect, useState } from 'react';
 export default function Page({ session }) {
 
   const supabase = createClientComponentClient( { cookieOptions: {domain: "automatearmy.com", path: "/"} } );
-  
-  const [userEmail, setUserEmail] = useState(null);
+  const user = supabase.auth.getUser();
 
-  useEffect(() => {
-    const getUserInfo = async () => {
-      const user = await supabase.auth.getUser();
-      setUserEmail(user?.email);
-    };
+  const userEmail = user?.email
 
-    getUserInfo();
-  }, []);
+  console.log("User: " + user)
 
   return (
     <div>
       {user ? (
-        <p>Welcome, {getUserEmail} in test-app-a!</p>
+        <p>Welcome, {userEmail} in test-app-a!</p>
       ) : (
         <p>Please sign in to continue.</p>
       )}
