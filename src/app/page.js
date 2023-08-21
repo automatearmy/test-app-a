@@ -2,11 +2,25 @@
 // pages/index.js (in your test-app-a project)
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useEffect, useState } from 'react';
+import { Button } from '@mantine/core';
 
 export default function Page({ session }) {
 
   const supabase = createClientComponentClient( { cookieOptions: {domain: "automatearmy.com", path: "/"} } );
-  const user = supabase.auth.getUser();
+  const user = session?.user;
+
+  const handleSignOut = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        throw error;
+      }
+      // Redirect to a sign-out confirmation page or any other page
+      window.location.href = 'https://auth.automatearmy.com/';
+    } catch (error) {
+      console.error('Error signing out:', error.message);
+    }
+  };
 
   const userEmail = user?.email
 
@@ -15,7 +29,12 @@ export default function Page({ session }) {
   return (
     <div>
       {user ? (
-        <p>Welcome, {userEmail} in test-app-a!</p>
+        <div>
+          <p>Welcome, {userEmail} in test-app-a!</p>
+          <Button onClick={handleSignOut}>
+            Sign out
+          </Button>
+        </div>
       ) : (
         <p>Please sign in to continue.</p>
       )}
