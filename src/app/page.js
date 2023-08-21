@@ -1,20 +1,22 @@
 'use client'
 // pages/index.js (in your test-app-a project)
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { useEffect, useState } from 'react';
 
 export default function Page({ session }) {
 
   const supabase = createClientComponentClient( { cookieOptions: {domain: "automatearmy.com", path: "/"} } );
   
-  const getUserInfo = async () => {
-    const user = await supabase.auth.getUser();
-    return user;
-  };
+  const [userEmail, setUserEmail] = useState(null);
 
-  const getUserEmail = async () => {
-    const user = await getUserInfo();
-    return user?.email;
-  };
+  useEffect(() => {
+    const getUserInfo = async () => {
+      const user = await supabase.auth.getUser();
+      setUserEmail(user?.email);
+    };
+
+    getUserInfo();
+  }, []);
 
   return (
     <div>
