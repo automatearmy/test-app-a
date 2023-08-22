@@ -18,10 +18,8 @@ export async function middleware(req) {
   }
 
   if(user) {
-    return NextResponse.redirect(new URL('https://a.automatearmy.com/home'))
+    return res
   }
-
-  return res
 
 }
 
