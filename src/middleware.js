@@ -14,7 +14,11 @@ export async function middleware(req) {
   console.dir(user) 
 
   if(!user) {
-    return NextResponse.redirect(new URL('https://auth.automatearmy.com/?redirect_url=https://a.automatearmy.com'))
+    return NextResponse.redirect(new URL('https://auth.automatearmy.com/?redirect_url=https://a.automatearmy.com/home'))
+  }
+
+  if(user) {
+    return NextResponse.redirect(new URL('https://a.automatearmy.com/home'))
   }
 
   return res
