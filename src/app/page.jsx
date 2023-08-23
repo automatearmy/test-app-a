@@ -1,6 +1,7 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
-import AccountPage from './account'
+import AccountPage from './home/account'
+import { Sidebar } from './components/sidebar'
 
 export default async function Account() {
   const supabase = createServerComponentClient({ cookies })
@@ -11,5 +12,10 @@ export default async function Account() {
 
   console.log("Session: " + session)
 
-  return <AccountPage session={session} />
+  return (
+    <div>
+      <Sidebar />
+      <AccountPage session={session} />
+    </div>
+  )
 }
