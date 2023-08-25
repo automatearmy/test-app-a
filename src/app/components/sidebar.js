@@ -4,12 +4,7 @@ import { createStyles, Navbar, Group, Code, getStylesRef, rem } from '@mantine/c
 import {
   IconBellRinging,
   IconFingerprint,
-  IconKey,
-  IconSettings,
-  Icon2fa,
-  IconDatabaseImport,
   IconReceipt2,
-  IconSwitchHorizontal,
   IconLogout,
 } from '@tabler/icons-react';
 import { MantineLogo } from '@mantine/ds';
@@ -73,10 +68,6 @@ const data = [
   { link: '', label: 'Notifications', icon: IconBellRinging },
   { link: '', label: 'Billing', icon: IconReceipt2 },
   { link: '', label: 'Security', icon: IconFingerprint },
-  { link: '', label: 'SSH Keys', icon: IconKey },
-  { link: '', label: 'Databases', icon: IconDatabaseImport },
-  { link: '', label: 'Authentication', icon: Icon2fa },
-  { link: '', label: 'Other Settings', icon: IconSettings },
 ];
 
 export function Sidebar() {
@@ -109,10 +100,6 @@ export function Sidebar() {
       </Navbar.Section>
 
       <Navbar.Section className={classes.footer}>
-        <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
-          <IconSwitchHorizontal className={classes.linkIcon} stroke={1.5} />
-          <span>Change account</span>
-        </a>
 
         <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
           <IconLogout className={classes.linkIcon} stroke={1.5} />

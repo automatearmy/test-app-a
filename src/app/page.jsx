@@ -13,9 +13,13 @@ export default async function Account() {
   console.log("Session: " + session)
 
   return (
-    <div>
-      <Sidebar />
-      <AccountPage session={session} />
+    <div className='flex flex-row'>
+      <div>
+        <Sidebar />
+      </div>
+      <div>
+        <AccountPage session={session} />
+      </div>
     </div>
   )
 }
