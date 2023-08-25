@@ -89,6 +89,19 @@ export function Sidebar() {
     </a>
   ));
 
+  const handleSignOut = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        throw error;
+      }
+      // Redirect to a sign-out confirmation page or any other page
+      window.location.href = 'https://auth.automatearmy.com/';
+    } catch (error) {
+      console.error('Error signing out:', error.message);
+    }
+  };
+
   return (
     <Navbar height={700} width={{ sm: 300 }} p="md">
       <Navbar.Section grow>
@@ -101,7 +114,7 @@ export function Sidebar() {
 
       <Navbar.Section className={classes.footer}>
 
-        <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
+        <a href="#" className={classes.link} onClick={(event) => {event.preventDefault(); handleSignOut();}}>
           <IconLogout className={classes.linkIcon} stroke={1.5} />
           <span>Logout</span>
         </a>
