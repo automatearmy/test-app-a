@@ -9,6 +9,7 @@ import {
 } from '@tabler/icons-react';
 import { MantineLogo } from '@mantine/ds';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { Button } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -70,8 +71,9 @@ const data = [
   { link: '/plant-totals', label: 'Plant Totals', /*icon: IconReceipt2*/ }
 ];
 
-export function Sidebar() {
-  const supabase = createClientComponentClient({ cookieOptions: {domain: "automatearmy.com", path: "/"} });
+export default function Sidebar({ session }) {
+  const supabase = createClientComponentClient( { cookieOptions: {domain: "automatearmy.com", path: "/"} } );
+  const user = session?.user;
 
   const { classes, cx } = useStyles();
   const [active, setActive] = useState('Billing');
@@ -109,17 +111,16 @@ export function Sidebar() {
       <Navbar.Section grow>
         <Group className={classes.header} position="apart">
           <MantineLogo size={28} />
-          {/* <Code sx={{ fontWeight: 700 }}>v3.1.2</Code> */}
+          <Code sx={{ fontWeight: 700 }}>v3.1.2</Code>
         </Group>
         {links}
       </Navbar.Section>
 
       <Navbar.Section className={classes.footer}>
 
-        <a href="#" className={classes.link} onClick={(event) => {event.preventDefault(); handleSignOut();}}>
-          <IconLogout className={classes.linkIcon} stroke={1.5} />
-          <span onClick={handleSignOut()}>Logout</span>
-        </a>
+          <Button onClick={handleSignOut}>
+            Sign out
+          </Button>
       </Navbar.Section>
     </Navbar>
   );
