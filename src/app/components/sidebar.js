@@ -65,9 +65,8 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const data = [
-  { link: '', label: 'Notifications', icon: IconBellRinging },
-  { link: '', label: 'Billing', icon: IconReceipt2 },
-  { link: '', label: 'Security', icon: IconFingerprint },
+  { link: '/dashboard', label: 'Dashboard', /*icon: IconBellRinging*/ },
+  { link: '/plant-totals', label: 'Plant Totals', /*icon: IconReceipt2*/ }
 ];
 
 export function Sidebar() {
@@ -116,7 +115,7 @@ export function Sidebar() {
 
         <a href="#" className={classes.link} onClick={(event) => {event.preventDefault(); handleSignOut();}}>
           <IconLogout className={classes.linkIcon} stroke={1.5} />
-          <span>Logout</span>
+          <span onClick={handleSignOut()}>Logout</span>
         </a>
       </Navbar.Section>
     </Navbar>
