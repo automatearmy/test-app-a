@@ -93,6 +93,8 @@ export default function Sidebar({ session }) {
     </a>
   ));
 
+  const userEmail = user?.email
+
   const handleSignOut = async () => {
     try {
       const { error } = await supabase.auth.signOut();
