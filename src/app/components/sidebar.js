@@ -113,6 +113,7 @@ export default function Sidebar({ session }) {
       <Navbar.Section grow>
         <Group className={classes.header} position="apart">
           <MantineLogo size={28} />
+          <p>{userEmail}</p>
           <Code sx={{ fontWeight: 700 }}>v3.1.2</Code>
         </Group>
         {links}
