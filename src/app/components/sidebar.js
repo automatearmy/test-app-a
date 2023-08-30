@@ -8,8 +8,6 @@ import {
   IconLogout,
 } from '@tabler/icons-react';
 import { MantineLogo } from '@mantine/ds';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { Button } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -71,10 +69,7 @@ const data = [
   { link: '/plant-totals', label: 'Plant Totals', /*icon: IconReceipt2*/ }
 ];
 
-export default function Sidebar({ session }) {
-  const supabase = createClientComponentClient( { cookieOptions: {domain: "automatearmy.com", path: "/"} } );
-  const user = session?.user;
-
+export function Sidebar() {
   const { classes, cx } = useStyles();
   const [active, setActive] = useState('Billing');
 
@@ -93,27 +88,11 @@ export default function Sidebar({ session }) {
     </a>
   ));
 
-  const userEmail = user?.email
-
-  const handleSignOut = async () => {
-    try {
-      const { error } = await supabase.auth.signOut();
-      if (error) {
-        throw error;
-      }
-      // Redirect to a sign-out confirmation page or any other page
-      window.location.href = 'https://auth.automatearmy.com/';
-    } catch (error) {
-      console.error('Error signing out:', error.message);
-    }
-  };
-
   return (
     <Navbar height={700} width={{ sm: 300 }} p="md">
       <Navbar.Section grow>
         <Group className={classes.header} position="apart">
           <MantineLogo size={28} />
-          <p>{userEmail}</p>
           <Code sx={{ fontWeight: 700 }}>v3.1.2</Code>
         </Group>
         {links}
@@ -121,9 +100,6 @@ export default function Sidebar({ session }) {
 
       <Navbar.Section className={classes.footer}>
 
-          <Button onClick={handleSignOut}>
-            Sign out
-          </Button>
       </Navbar.Section>
     </Navbar>
   );
