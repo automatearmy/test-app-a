@@ -8,6 +8,7 @@ import {
   IconLogout,
 } from '@tabler/icons-react';
 import { MantineLogo } from '@mantine/ds';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -70,6 +71,8 @@ const data = [
 ];
 
 export function Sidebar() {
+  const supabase = createServerComponentClient({ cookieOptions: {domain: "automatearmy.com", path: "/"} })
+
   const { classes, cx } = useStyles();
   const [active, setActive] = useState('Billing');
 
