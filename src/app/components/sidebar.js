@@ -109,7 +109,7 @@ export function Sidebar() {
       <Navbar.Section grow>
         <Group className={classes.header} position="apart">
           <MantineLogo size={28} />
-          <Code sx={{ fontWeight: 700 }}>v3.1.2</Code>
+          {/* <Code sx={{ fontWeight: 700 }}>v3.1.2</Code> */}
         </Group>
         {links}
       </Navbar.Section>
