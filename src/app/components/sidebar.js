@@ -18,8 +18,6 @@ const useStyles = createStyles((theme) => ({
     }`,
   },
 
-  // Why won't this shit deploy
-
   footer: {
     paddingTop: theme.spacing.md,
     marginTop: theme.spacing.md,
@@ -101,6 +99,11 @@ export function Sidebar() {
       </Navbar.Section>
 
       <Navbar.Section className={classes.footer}>
+
+        <a href="#" className={classes.link} onClick={(event) => {event.preventDefault();}}>
+          <IconLogout className={classes.linkIcon} stroke={1.5} />
+            <span>Logout</span>
+        </a>
 
       </Navbar.Section>
     </Navbar>
