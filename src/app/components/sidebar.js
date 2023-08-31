@@ -1,111 +1,83 @@
-'use client'
-import { useState } from 'react';
-import { createStyles, Navbar, Group, Code, getStylesRef, rem } from '@mantine/core';
 import {
-  IconBellRinging,
-  IconFingerprint,
-  IconReceipt2,
-  IconLogout,
-} from '@tabler/icons-react';
-import { MantineLogo } from '@mantine/ds';
+  FolderIcon,
+  HomeIcon,
+  UsersIcon,
+} from '@heroicons/react/24/outline'
+import Image from 'next/image'
 
-const useStyles = createStyles((theme) => ({
-  header: {
-    paddingBottom: theme.spacing.md,
-    marginBottom: `calc(${theme.spacing.md} * 1.5)`,
-    borderBottom: `${rem(1)} solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
-    }`,
-  },
+const navigation = [
+  { name: 'Home', href: '/', icon: HomeIcon, current: true },
+  { name: 'Dashboard', href: '/dashboard', icon: UsersIcon, current: false },
+  { name: 'Plant Totals', href: '/plant-totals', icon: FolderIcon, current: false },
+]
 
-  footer: {
-    paddingTop: theme.spacing.md,
-    marginTop: theme.spacing.md,
-    borderTop: `${rem(1)} solid ${
-      theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
-    }`,
-  },
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
 
-  link: {
-    ...theme.fn.focusStyles(),
-    display: 'flex',
-    alignItems: 'center',
-    textDecoration: 'none',
-    fontSize: theme.fontSizes.sm,
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[7],
-    padding: `${theme.spacing.xs} ${theme.spacing.sm}`,
-    borderRadius: theme.radius.sm,
-    fontWeight: 500,
-
-    '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-      color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-
-      [`& .${getStylesRef('icon')}`]: {
-        color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-      },
-    },
-  },
-
-  linkIcon: {
-    ref: getStylesRef('icon'),
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[2] : theme.colors.gray[6],
-    marginRight: theme.spacing.sm,
-  },
-
-  linkActive: {
-    '&, &:hover': {
-      backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).background,
-      color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color,
-      [`& .${getStylesRef('icon')}`]: {
-        color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color,
-      },
-    },
-  },
-}));
-
-const data = [
-  { link: '/dashboard', label: 'Dashboard', /*icon: IconBellRinging*/ },
-  { link: '/plant-totals', label: 'Plant Totals', /*icon: IconReceipt2*/ }
-];
-
-export function Sidebar() {
-  const { classes, cx } = useStyles();
-  const [active, setActive] = useState('Billing');
-
-  const links = data.map((item) => (
-    <a
-      className={cx(classes.link, { [classes.linkActive]: item.label === active })}
-      href={item.link}
-      key={item.label}
-      onClick={(event) => {
-        event.preventDefault();
-        setActive(item.label);
-      }}
-    >
-      <item.icon className={classes.linkIcon} stroke={1.5} />
-      <span>{item.label}</span>
-    </a>
-  ));
-
+export default function Sidebar() {
   return (
-    <Navbar height={700} width={{ sm: 300 }} p="md">
-      <Navbar.Section grow>
-        <Group className={classes.header} position="apart">
-          <MantineLogo size={28} />
-          <Code sx={{ fontWeight: 700 }}>v3.1.2</Code>
-        </Group>
-        {links}
-      </Navbar.Section>
-
-      <Navbar.Section className={classes.footer}>
-
-        <a href="#" className={classes.link} onClick={(event) => {event.preventDefault();}}>
-          <IconLogout className={classes.linkIcon} stroke={1.5} />
-            <span>Logout</span>
-        </a>
-
-      </Navbar.Section>
-    </Navbar>
-  );
+    <div className="w-64 flex-shrink-0 flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
+      <div className="flex h-16 shrink-0 items-center">
+        <Image
+          src='/oohChargerLogo.png'
+          width={32}
+          height={32}
+          alt='IBO Logo'
+        />
+      </div>
+      <nav className="flex flex-1 flex-col">
+        <ul role="list" className="flex flex-1 flex-col gap-y-7">
+          <li>
+            <ul role="list" className="-mx-2 space-y-1">
+              {navigation.map((item) => (
+                <li key={item.name}>
+                  <a
+                    href={item.href}
+                    className={classNames(
+                      item.current
+                        ? 'bg-gray-50 text-indigo-600'
+                        : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
+                      'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                    )}
+                  >
+                    <item.icon
+                      className={classNames(
+                        item.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
+                        'h-6 w-6 shrink-0'
+                      )}
+                      aria-hidden="true"
+                    />
+                    {item.name}
+                    {item.count ? (
+                      <span
+                        className="ml-auto w-9 min-w-max whitespace-nowrap rounded-full bg-white px-2.5 py-0.5 text-center text-xs font-medium leading-5 text-gray-600 ring-1 ring-inset ring-gray-200"
+                        aria-hidden="true"
+                      >
+                        {item.count}
+                      </span>
+                    ) : null}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </li>
+          {/* <li className="-mx-6 mt-auto">
+            <a
+              href="#"
+              className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
+            >
+              <img
+                className="h-8 w-8 rounded-full bg-gray-50"
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt=""
+              />
+              <span className="sr-only">Your profile</span>
+              <span aria-hidden="true">Tom Cook</span>
+            </a>
+          </li> */}
+        </ul>
+      </nav>
+    </div>
+  )
 }
