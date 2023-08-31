@@ -1,21 +1,25 @@
+'use client'
 import {
   FolderIcon,
   HomeIcon,
   UsersIcon,
 } from '@heroicons/react/24/outline'
 import Image from 'next/image'
-
-const navigation = [
-  { name: 'Home', href: '/', icon: HomeIcon, current: true },
-  { name: 'Dashboard', href: '/dashboard', icon: UsersIcon, current: false },
-  { name: 'Plant Totals', href: '/plant-totals', icon: FolderIcon, current: false },
-]
+import { usePathname } from 'next/navigation';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Sidebar() {
+  const currentRoute = usePathname()
+
+  const navigation = [
+    { name: 'Home', href: '/', icon: HomeIcon, current: currentRoute === '/' },
+    { name: 'Dashboard', href: '/dashboard', icon: UsersIcon, current: currentRoute === '/dashboard' },
+    { name: 'Plant Totals', href: '/plant-totals', icon: FolderIcon, current: currentRoute === '/plant-totals' },
+  ]
+
   return (
     <div className="w-64 flex-shrink-0 flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
       <div className="flex h-16 shrink-0 items-center">
@@ -49,14 +53,6 @@ export default function Sidebar() {
                       aria-hidden="true"
                     />
                     {item.name}
-                    {item.count ? (
-                      <span
-                        className="ml-auto w-9 min-w-max whitespace-nowrap rounded-full bg-white px-2.5 py-0.5 text-center text-xs font-medium leading-5 text-gray-600 ring-1 ring-inset ring-gray-200"
-                        aria-hidden="true"
-                      >
-                        {item.count}
-                      </span>
-                    ) : null}
                   </a>
                 </li>
               ))}

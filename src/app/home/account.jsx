@@ -13,7 +13,6 @@ export default function AccountPage({ session }) {
       if (error) {
         throw error;
       }
-      // Redirect to a sign-out confirmation page or any other page
       window.location.href = 'https://auth.automatearmy.com/';
     } catch (error) {
       console.error('Error signing out:', error.message);
