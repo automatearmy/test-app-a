@@ -118,7 +118,7 @@ export default function Sidebar({ session }) {
               )}
               {/* h = 8 w = 8 */}
               <span className="sr-only">Your profile</span>
-              <span aria-hidden="true">Tom Cook</span>
+              <span aria-hidden="true">{fullname}</span>
             </a>
           </li>
         </ul>

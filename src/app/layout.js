@@ -1,8 +1,5 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
-import Sidebar from './components/sidebar'
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,28 +11,10 @@ export const metadata = {
 }
 
 export default async function RootLayout({ children }) {
-  const supabase = createServerComponentClient({ cookies })
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
 
   return (
     <html lang="en">
-      <body className={`h-screen ${inter.className}`}>
-        <div className='flex h-full'>
-          <Sidebar 
-            className='h-full'
-            session={session}
-          />
-          <div 
-            className='flex-grow h-full'
-            session={session}
-          >
-            {children}
-          </div>
-        </div>
-      </body>
+      <body className={`h-screen ${inter.className}`}>{children}</body>
     </html>
   )
 }
