@@ -18,10 +18,10 @@ export default function Sidebar({ session }) {
   const supabase = createClientComponentClient({ cookieOptions: {domain: "automatearmy.com", path: "/"} })
   const [loading, setLoading] = useState(true)
   const [fullname, setFullname] = useState(null)
-  const [username, setUsername] = useState(null)
-  const [website, setWebsite] = useState(null)
   const [avatarUrl, setAvatarUrl] = useState(null)
   const user = session?.user
+
+  console.log("User: " + user)
 
   const getProfile = useCallback(async () => {
     try {
@@ -29,7 +29,7 @@ export default function Sidebar({ session }) {
 
       let { data, error, status } = await supabase
         .from('profiles')
-        .select(`full_name, username, website, avatar_url`)
+        .select(`full_name, avatar_url`)
         .eq('id', user?.id)
         .single()
 
@@ -39,8 +39,6 @@ export default function Sidebar({ session }) {
 
       if (data) {
         setFullname(data.full_name)
-        setUsername(data.username)
-        setWebsite(data.website)
         setAvatarUrl(data.avatar_url)
       }
     } catch (error) {

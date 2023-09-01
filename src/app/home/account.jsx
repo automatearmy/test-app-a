@@ -21,10 +21,6 @@ export default function AccountPage({ session }) {
 
   const userEmail = user?.email
 
-  console.log("Session: " + session)
-  console.dir(user)
-  console.log(supabase.auth.getUser())
-
   return (
     <div>
       {user ? (
