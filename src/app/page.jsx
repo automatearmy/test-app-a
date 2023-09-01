@@ -9,8 +9,6 @@ export default async function Account() {
   //   data: { session },
   // } = await supabase.auth.getSession()
 
-  console.log("Session: " + session)
-
   return (
     <div className='flex flex-row'>
         <AccountPage />
