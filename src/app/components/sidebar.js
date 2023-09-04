@@ -59,7 +59,7 @@ export default function Sidebar({ session }) {
   ]
 
   return (
-    <div className="w-64 flex-shrink-0 flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
+    <div className="w-64 flex-shrink-0 flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-yellow-300 px-6">
       <div className="flex h-16 shrink-0 items-center">
         <Image
           src='/oohChargerLogo.png'
@@ -78,14 +78,14 @@ export default function Sidebar({ session }) {
                     href={item.href}
                     className={classNames(
                       item.current
-                        ? 'bg-gray-50 text-indigo-600'
-                        : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
+                        ? 'bg-amber-100 text-stone-800'
+                        : 'text-gray-700 hover:text-stone-600 hover:bg-amber-200',
                       'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                     )}
                   >
                     <item.icon
                       className={classNames(
-                        item.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
+                        item.current ? 'text-stone-800' : 'text-stone-800 group-hover:text-stone-800',
                         'h-6 w-6 shrink-0'
                       )}
                       aria-hidden="true"
@@ -99,13 +99,14 @@ export default function Sidebar({ session }) {
           <li className="-mx-6 mt-auto">
             <a
               href="#"
-              className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"
+              className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-amber-200"
             >
               {avatarUrl ? (
                 <Image 
                   src={avatarUrl}
                   width={8}
                   height={8}
+                  alt=""
                 />
               ) : (
                 <img
