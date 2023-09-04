@@ -98,7 +98,7 @@ export default function Sidebar({ session }) {
           </li>
           <li className="-mx-6 mt-auto">
             <a
-              href="#"
+              href="/profile"
               className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-amber-200"
             >
               {avatarUrl ? (
