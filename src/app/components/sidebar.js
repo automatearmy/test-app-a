@@ -104,9 +104,10 @@ export default function Sidebar({ session }) {
               {avatarUrl ? (
                 <Image 
                   src={avatarUrl}
-                  width={8}
-                  height={8}
+                  width={16}
+                  height={16}
                   alt="Profile photo"
+                  className='rounded-full'
                 />
               ) : (
                 <img

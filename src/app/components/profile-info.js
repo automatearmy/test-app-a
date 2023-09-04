@@ -45,12 +45,16 @@ export default function ProfileInfo({ session }) {
                 <li>Full name: {fullname}</li>
                 <li>Avatar URL: {avatarUrl}</li>
             </ui>
-            <Image 
-                height={32}
-                width={32}
-                src={avatarUrl}
-                alt='Profile photo'
-            />
+            {avatarUrl ? (
+                <Image 
+                  src={avatarUrl}
+                  width={8}
+                  height={8}
+                  alt="Profile photo"
+                />
+              ) : (
+                <p>No avatar</p>
+              )}
         </div>
     )
 }

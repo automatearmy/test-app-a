@@ -9,8 +9,7 @@ export default async function Profile() {
     const {
       data: { session },
     } = await supabase.auth.getSession()
-
-
+    
     return (
         <div style={{ height: '100vh' }}>
             <div className="flex h-full">
