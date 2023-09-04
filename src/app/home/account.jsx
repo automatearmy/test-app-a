@@ -1,5 +1,5 @@
 'use client'
-// pages/index.js (in your test-app-a project)
+
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Button } from '@mantine/core';
 

@@ -1,6 +1,7 @@
 'use client'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import React, { useEffect, useState, useCallback } from 'react'
+import Image from 'next/image'
 
 export default function ProfileInfo({ session }) {
     const supabase = createClientComponentClient({ cookieOptions: {domain: "automatearmy.com", path: "/"} })
@@ -44,6 +45,12 @@ export default function ProfileInfo({ session }) {
                 <li>Full name: {fullname}</li>
                 <li>Avatar URL: {avatarUrl}</li>
             </ui>
+            <Image 
+                height={32}
+                width={32}
+                src={avatarUrl}
+                alt='Profile photo'
+            />
         </div>
     )
 }

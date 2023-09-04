@@ -106,7 +106,7 @@ export default function Sidebar({ session }) {
                   src={avatarUrl}
                   width={8}
                   height={8}
-                  alt=""
+                  alt="Profile photo"
                 />
               ) : (
                 <img
