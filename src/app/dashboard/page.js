@@ -14,7 +14,7 @@ export default async function Dashboard() {
 
     return (
         <div style={{ height: '100vh' }}>
-            <div className='flex h-full'>
+            <div className='flex h-full bg-[#3a435f]'>
                 <Sidebar 
                     className='h-full'
                     session={session}
