@@ -41,7 +41,7 @@ export default function AppContainer({session, src}) {
       <div>Loading!</div>
     )
   }
-  const appUrl = `${src}?contact_id=${companyId}`
+  const appUrl = `${src}?company_id=${companyId}`
   console.log(appUrl)
   return (
     <>
