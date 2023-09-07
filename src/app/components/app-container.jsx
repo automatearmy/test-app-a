@@ -41,8 +41,8 @@ export default function AppContainer({session, src}) {
       <div>Loading!</div>
     )
   }
-  const appUrl = `${src}?company_id=${companyId}`
-  console.log(appUrl)
+  const appUrl = `${src}?company_id=${companyId}&user_id=${user?.id}`
+
   return (
     <>
       {<iframe src={appUrl} width="100%" height="100%"></iframe>}
