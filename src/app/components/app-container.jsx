@@ -41,10 +41,11 @@ export default function AppContainer({session, src}) {
       <div>Loading!</div>
     )
   }
-
+  const appUrl = `${src}${companyId}`
+  console.log(appUrl)
   return (
     <>
-      {<iframe src={`${src}${companyId}`} width="100%" height="100%"></iframe>}
+      {<iframe src={appUrl} width="100%" height="100%"></iframe>}
     </>
   )
 }
