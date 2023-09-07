@@ -17,6 +17,7 @@ export default async function Dashboard() {
       .single()
 
     const companyId = profile ? profile.company_id : null
+    console.log(companyId)
 
     return (
         <div style={{ height: '100vh' }}>
