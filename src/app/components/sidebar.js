@@ -59,7 +59,7 @@ export default function Sidebar({ session }) {
   ]
 
   return (
-    <div className="w-64 flex-shrink-0 flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-yellow-300 px-6">
+    <div className="w-64 flex-shrink-0 flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-[#f6d87a] px-6">
       <div className="flex h-16 shrink-0 items-center">
         <Image
           src='/oohChargerLogo.png'
