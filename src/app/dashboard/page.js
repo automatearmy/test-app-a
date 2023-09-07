@@ -1,33 +1,37 @@
+import { useEffect, useState } from 'react';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
 import Sidebar from '../components/sidebar'
 
-export default async function Dashboard() {
-    const supabase = createServerComponentClient({ cookies })
+export default function Dashboard() {
+    const [session, setSession] = useState(null);
+    const [companyId, setCompanyId] = useState(null);
+    
+    useEffect(() => {
+        async function fetchData() {
+            const supabase = createServerComponentClient({ cookies });
+            const { data: { session } } = await supabase.auth.getSession();
+            setSession(session);
 
-    const {
-      data: { session },
-    } = await supabase.auth.getSession()
+            if (session) {
+                const { data: profile } = await supabase
+                    .from('profile')
+                    .select('company_id')
+                    .eq('id', session.user.id)
+                    .single();
 
-    // Fetch the company_id from the profile table where the ID equals to the user ID
-    const { data: profile } = await supabase
-      .from('profile')
-      .select('company_id')
-      .eq('id', session.user.id)
-      .single()
+                setCompanyId(profile ? profile.company_id : null);
+            }
+        }
 
-    const companyId = profile ? profile.company_id : null
-    console.log(companyId)
+        fetchData();
+    }, []);
 
     return (
         <div style={{ height: '100vh' }}>
             <div className='flex h-full'>
-                <Sidebar 
-                    className='h-full'
-                    session={session}
-                />
+                {session && <Sidebar className='h-full' session={session} />}
                 {companyId && <iframe src={`https://oohinfo.retool.com/embedded/public/69c1c571-610e-4808-afdc-50fa966cff4a?company_id=${companyId}`} width="100%" height="100%"></iframe>}
             </div>
         </div>
-    )
+    );
 }
