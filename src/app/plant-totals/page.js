@@ -1,6 +1,7 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import Sidebar from '../components/sidebar'
+import AppContainer from '../components/app-container'
 
 export default async function PlantTotals() {
     const supabase = createServerComponentClient({ cookies })
@@ -9,6 +10,8 @@ export default async function PlantTotals() {
       data: { session },
     } = await supabase.auth.getSession()
 
+    const src = "https://oohinfo.retool.com/embedded/public/10f45537-f718-4ed9-b511-e7112cff35e3"
+
     return (
         <div style={{ height: '100vh' }}>
             <div className='flex h-full'>
@@ -16,7 +19,7 @@ export default async function PlantTotals() {
                     className='h-full'
                     session={session}
                 />
-                <iframe src="https://oohinfo.retool.com/embedded/public/10f45537-f718-4ed9-b511-e7112cff35e3" width="100%" height="100%"></iframe>
+                <AppContainer session={session} src={src} />
             </div>
         </div>
     )
