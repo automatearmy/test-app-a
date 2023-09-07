@@ -1,6 +1,6 @@
 "use client"
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 
 export default function AppContainer({session, src}) {
   const supabase = createClientComponentClient({ cookieOptions: {domain: "automatearmy.com", path: "/"} })
@@ -33,13 +33,15 @@ export default function AppContainer({session, src}) {
   }, [user, supabase])
 
   useEffect(() => {
-    getProfile()
-  }, [user, getProfile])
+    getCompanyId()
+  }, [user, getCompanyId])
+  
   if (loading) {
     return (
       <div>Loading!</div>
     )
   }
+
   return (
     <>
       {<iframe src={`${src}${companyId}`} width="100%" height="100%"></iframe>}
