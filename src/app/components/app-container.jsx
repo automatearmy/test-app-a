@@ -1,6 +1,6 @@
 "use client"
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 
 export default function AppContainer({session, src}) {
   const supabase = createClientComponentClient({ cookieOptions: {domain: "automatearmy.com", path: "/"} })
@@ -35,7 +35,7 @@ export default function AppContainer({session, src}) {
   useEffect(() => {
     getCompanyId()
   }, [user, getCompanyId])
-  
+
   if (loading) {
     return (
       <div>Loading!</div>
