@@ -3,6 +3,7 @@ import {
   FolderIcon,
   HomeIcon,
   UsersIcon,
+  ServerIcon
 } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation';
@@ -56,6 +57,7 @@ export default function Sidebar({ session }) {
     { name: 'Home', href: '/', icon: HomeIcon, current: currentRoute === '/' },
     { name: 'Dashboard', href: '/dashboard', icon: UsersIcon, current: currentRoute === '/dashboard' },
     { name: 'Plant Totals', href: '/plant-totals', icon: FolderIcon, current: currentRoute === '/plant-totals' },
+    { name: 'Inventory Updates', href: '/inventory-updates', icon: ServerIcon, current: currentRoute === '/inventory-updates' },
   ]
 
   return (
