@@ -1,6 +1,7 @@
 "use client"
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import React, { useState, useCallback, useEffect } from 'react'
+import LoadingSpinner from './loadingSpinner'
 
 export default function AppContainer({session, src}) {
   const supabase = createClientComponentClient({ cookieOptions: {domain: "automatearmy.com", path: "/"} })
@@ -38,7 +39,9 @@ export default function AppContainer({session, src}) {
 
   if (loading) {
     return (
-      <div>Loading!</div>
+      <div className="flex justify-center items-center w-full">
+        <LoadingSpinner />
+      </div>
     )
   }
   const appUrl = `${src}?company_id=${companyId}&user_id=${user?.id}`

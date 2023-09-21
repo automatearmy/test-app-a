@@ -61,7 +61,7 @@ export default function Sidebar({ session }) {
   ]
 
   return (
-    <div className="w-64 flex-shrink-0 flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-[#f6d87a] px-6">
+    <div className="w-64 flex-shrink-0 flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-[#f6d87a] px-6 relative">
       <div className="flex h-16 shrink-0 items-center">
         <Image
           src='/oohChargerLogo.png'
@@ -98,7 +98,7 @@ export default function Sidebar({ session }) {
               ))}
             </ul>
           </li>
-          <li className="-mx-6 mt-auto">
+          <li className="-mx-6 mt-auto absolute bottom-5 w-full">
             <a
               href="/profile"
               className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-amber-200"
@@ -106,6 +106,7 @@ export default function Sidebar({ session }) {
               {avatarUrl ? (
                 <Image 
                   src={avatarUrl}
+                  
                   width={32}
                   height={32}
                   alt="Profile photo"
@@ -120,7 +121,7 @@ export default function Sidebar({ session }) {
               )}
               {/* h = 8 w = 8 */}
               <span className="sr-only">Your profile</span>
-              <span aria-hidden="true">{fullname}</span>
+              <span aria-hidden="true">{fullname ?? 'User'}</span>
             </a>
           </li>
         </ul>
