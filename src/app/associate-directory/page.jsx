@@ -3,14 +3,14 @@ import { cookies } from 'next/headers'
 import Sidebar from '../components/sidebar'
 import AppContainer from '../components/app-container'
 
-export default async function InventoryUpdates() {
+export default async function AssociateDirectory() {
     const supabase = createServerComponentClient({ cookies })
 
     const {
       data: { session },
     } = await supabase.auth.getSession()
 
-    const src = "https://oohinfo.retool.com/embedded/public/e17727d5-c765-4694-9aaa-cd8238dcbf2d"
+    const src = "https://oohinfo.retool.com/embedded/public/69c1c571-610e-4808-afdc-50fa966cff4a"
 
     return (
         <div style={{ height: '100vh' }}>

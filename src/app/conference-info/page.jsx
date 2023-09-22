@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 import Sidebar from '../components/sidebar'
 import AppContainer from '../components/app-container'
 
-export default async function Dashboard() {
+export default async function ConferenceInfo() {
     const supabase = createServerComponentClient({ cookies })
 
     const {
