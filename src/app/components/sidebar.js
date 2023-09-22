@@ -2,6 +2,7 @@
 import {
   FolderIcon,
   HomeIcon,
+  InformationCircleIcon,
   UsersIcon,
   ServerIcon,
   StarIcon,
@@ -57,7 +58,7 @@ export default function Sidebar({ session }) {
 
   const navigation = [
     { name: 'Home', href: '/', icon: HomeIcon, current: currentRoute === '/' },
-    { name: 'PerView Overview', href: '/overview', icon: UsersIcon, current: currentRoute === '/overview' },
+    { name: 'PerView Overview', href: '/overview', icon: InformationCircleIcon, current: currentRoute === '/overview' },
     { name: 'PerView Plant Totals', href: '/plant-totals', icon: FolderIcon, current: currentRoute === '/plant-totals' },
     { name: 'Speedway Updates', href: '/inventory-updates', icon: ServerIcon, current: currentRoute === '/inventory-updates' },
     { name: 'Inventory RFO Sold', href: '/inventory-sold', icon: ServerIcon, current: currentRoute === '/inventory-sold' },
