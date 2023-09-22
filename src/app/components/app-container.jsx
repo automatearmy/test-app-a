@@ -48,7 +48,7 @@ export default function AppContainer({session, src}) {
 
   return (
     <>
-      {<iframe src={appUrl} width="100%" height="100%"></iframe>}
+      {<iframe src={appUrl} width="100%" height="100%" className='bg-[#3a435f]'></iframe>}
     </>
   )
 }

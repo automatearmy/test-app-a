@@ -10,7 +10,7 @@ export default async function IntensityScore() {
       data: { session },
     } = await supabase.auth.getSession()
 
-    const src = "https://oohinfo.retool.com/embedded/public/69c1c571-610e-4808-afdc-50fa966cff4a"
+    const src = "https://oohinfo.retool.com/embedded/public/11ba5444-ad6c-499e-9ce3-f7661ade57b9"
 
     return (
         <div style={{ height: '100vh' }}>
