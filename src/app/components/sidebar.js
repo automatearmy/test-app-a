@@ -3,7 +3,9 @@ import {
   FolderIcon,
   HomeIcon,
   UsersIcon,
-  ServerIcon
+  ServerIcon,
+  StarIcon,
+  MapIcon
 } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation';
@@ -59,9 +61,9 @@ export default function Sidebar({ session }) {
     { name: 'PerView Plant Totals', href: '/plant-totals', icon: FolderIcon, current: currentRoute === '/plant-totals' },
     { name: 'Speedway Updates', href: '/inventory-updates', icon: ServerIcon, current: currentRoute === '/inventory-updates' },
     { name: 'Inventory RFO Sold', href: '/inventory-sold', icon: ServerIcon, current: currentRoute === '/inventory-sold' },
-    { name: 'MetricOOH Intensity Score', href: '/intensity-score', icon: ServerIcon, current: currentRoute === '/intensity-score' },
-    { name: 'Conference Info', href: '/conference-info', icon: ServerIcon, current: currentRoute === '/conference-info' },
-    { name: 'Associate Directory', href: '/associate-directory', icon: ServerIcon, current: currentRoute === '/associate-directory' },
+    { name: 'MetricOOH Intensity Score', href: '/intensity-score', icon: MapIcon, current: currentRoute === '/intensity-score' },
+    { name: 'Conference Info', href: '/conference-info', icon: StarIcon, current: currentRoute === '/conference-info' },
+    { name: 'Associate Directory', href: '/associate-directory', icon: UsersIcon, current: currentRoute === '/associate-directory' },
   ]
 
   return (
