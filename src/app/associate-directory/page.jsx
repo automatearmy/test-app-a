@@ -10,7 +10,7 @@ export default async function AssociateDirectory() {
       data: { session },
     } = await supabase.auth.getSession()
 
-    const src = "https://oohinfo.retool.com/embedded/public/69c1c571-610e-4808-afdc-50fa966cff4a"
+    const src = "https://oohinfo.retool.com/embedded/public/c231c336-92c1-412f-8dc9-f5f32550c959"
 
     return (
         <div style={{ height: '100vh' }}>
