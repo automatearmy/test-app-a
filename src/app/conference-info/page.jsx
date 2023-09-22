@@ -10,7 +10,7 @@ export default async function ConferenceInfo() {
       data: { session },
     } = await supabase.auth.getSession()
 
-    const src = "https://oohinfo.retool.com/embedded/public/69c1c571-610e-4808-afdc-50fa966cff4a"
+    const src = "https://oohinfo.retool.com/embedded/public/038a38ae-83e3-4dc3-9764-4e00f48fcf58"
 
     return (
         <div style={{ height: '100vh' }}>
