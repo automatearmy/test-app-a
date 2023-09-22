@@ -55,9 +55,13 @@ export default function Sidebar({ session }) {
 
   const navigation = [
     { name: 'Home', href: '/', icon: HomeIcon, current: currentRoute === '/' },
-    { name: 'Dashboard', href: '/dashboard', icon: UsersIcon, current: currentRoute === '/dashboard' },
-    { name: 'Plant Totals', href: '/plant-totals', icon: FolderIcon, current: currentRoute === '/plant-totals' },
-    { name: 'Inventory Updates', href: '/inventory-updates', icon: ServerIcon, current: currentRoute === '/inventory-updates' },
+    { name: 'PerView Overview', href: '/dashboard', icon: UsersIcon, current: currentRoute === '/dashboard' },
+    { name: 'PerView Plant Totals', href: '/plant-totals', icon: FolderIcon, current: currentRoute === '/plant-totals' },
+    { name: 'Speedway Updates', href: '/inventory-updates', icon: ServerIcon, current: currentRoute === '/inventory-updates' },
+    { name: 'Inventory RFO Sold', href: '/inventory-sold', icon: ServerIcon, current: currentRoute === '/inventory-sold' },
+    { name: 'MetricOOH Intensity Score', href: '/intensity-score', icon: ServerIcon, current: currentRoute === '/intensity-score' },
+    { name: 'Conference Info', href: '/conference-info', icon: ServerIcon, current: currentRoute === '/conference-info' },
+    { name: 'Associate Directory', href: '/associate-directory', icon: ServerIcon, current: currentRoute === '/associate-directory' },
   ]
 
   return (
