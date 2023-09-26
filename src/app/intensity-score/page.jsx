@@ -1,7 +1,7 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import Sidebar from '../components/sidebar'
-import AppContainer from '../components/app-container'
+import Map from '../components/map'
 
 export default async function IntensityScore() {
     const supabase = createServerComponentClient({ cookies })
@@ -10,7 +10,6 @@ export default async function IntensityScore() {
       data: { session },
     } = await supabase.auth.getSession()
 
-    const src = "https://oohinfo.retool.com/embedded/public/11ba5444-ad6c-499e-9ce3-f7661ade57b9"
 
     return (
         <div style={{ height: '100vh' }}>
@@ -19,7 +18,9 @@ export default async function IntensityScore() {
                     className='h-full'
                     session={session}
                 />
-                <AppContainer session={session} src={src} />
+                <div className='mx-auto max-w-7xl sm:px-6 lg:px-8'>
+                    <Map />
+                </div> 
             </div>
         </div>
     )
