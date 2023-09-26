@@ -18,7 +18,7 @@ export default async function Dashboard() {
 
     const companyId = profile ? profile.company_id : null
     console.log(companyId)
-
+    console.log('test')
     return (
         <div style={{ height: '100vh' }}>
             <div className='flex h-full'>
