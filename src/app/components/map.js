@@ -15,8 +15,8 @@ export default function MapComponent({ originCoordinates, roadData, billboardDat
 				[20, "gray"],
 				[40, "turquoise"],
 				[60, "magenta"],
-				[80, "red"],
-				[100, "red"]
+				[80, "blue"],
+				[100, "blue"]
 			],
 		},
 		"line-width": 2,
@@ -26,7 +26,6 @@ export default function MapComponent({ originCoordinates, roadData, billboardDat
 		B: "greenyellow",
 		C: "yellow",
 		D: "orange",
-		E: "gold",
 		F: "red"
 	}}) {
  
@@ -45,7 +44,6 @@ export default function MapComponent({ originCoordinates, roadData, billboardDat
 				["B", billboardLineColor.B],
 				["C", billboardLineColor.C],
 				["D", billboardLineColor.D],
-				["E", billboardLineColor.E],
 				["F", billboardLineColor.F],
 			],
 		},
@@ -60,7 +58,7 @@ export default function MapComponent({ originCoordinates, roadData, billboardDat
 			<Map
 				className='rounded-md overflow-hidden' 
 				center={originCoordinates}
-				style="mapbox://styles/mapbox/streets-v8"
+				style="mapbox://styles/mapbox/light-v11"
 				onStyleLoad={() => {
 					setShowLegends(true);
 				}}
@@ -88,7 +86,6 @@ export default function MapComponent({ originCoordinates, roadData, billboardDat
 					id="billboard-layer"
 					source='billboard'
 					source-layer='original'
-        
 					type={"circle"} paint={billboardLinePaint} />
 				{billboardPopup &&  (
 					<Popup
@@ -139,7 +136,7 @@ export default function MapComponent({ originCoordinates, roadData, billboardDat
 							<h1 className="text-slate-200 font-bold text-md">Billboards (Score)</h1>
 							<div className="flex items-center">
 								<div className="w-4 h-4 mr-2   font-bold rounded-full" style={{backgroundColor:billboardLineColor.A}}></div>
-								<div className="text-white">A - Best Score</div>
+								<div className="text-white">A - Highest Score</div>
 							</div>
 							<div className="flex items-center">
 								<div className="w-4 h-4 mr-2   font-bold rounded-full" style={{backgroundColor:billboardLineColor.B}}></div>
@@ -154,12 +151,8 @@ export default function MapComponent({ originCoordinates, roadData, billboardDat
 								<div className="text-white">D</div>
 							</div>
 							<div className="flex items-center">
-								<div className="w-4 h-4 mr-2   font-bold rounded-full" style={{backgroundColor:billboardLineColor.D}}></div>
-								<div className="text-white">E</div>
-							</div>
-							<div className="flex items-center">
 								<div className="w-4 h-4 mr-2   font-bold rounded-full" style={{backgroundColor:billboardLineColor.F}}></div>
-								<div className="text-white">F - Worst Score</div>
+								<div className="text-white">F - Lowest Score</div>
 							</div>
 						</div>
 

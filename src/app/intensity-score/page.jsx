@@ -2,10 +2,11 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import Sidebar from "../components/sidebar";
 import Map from "../components/map";
-import roads from "../intensity-score/roads.json";
-import billboards from "../intensity-score/billboards.json";
-// import devBillboards from "../intensity-score/devBillboards.json"
-// import devRoads from "../intensity-score/devRoads.json"
+// import roads from "../intensity-score/roads.json";
+// import billboards from "../intensity-score/billboards.json";
+import Image from "next/image";
+import reducedBillboards from "../intensity-score/reducedBillboard.json"
+import reducedRoads from "../intensity-score/reducedRoads.json"
 
 export default async function IntensityScore() {
 	const supabase = createServerComponentClient({ cookies });
@@ -14,6 +15,10 @@ export default async function IntensityScore() {
 		data: { session },
 	} = await supabase.auth.getSession();
 
+  // if(process.env.NODE_ENV == "development") {
+  //   roads.features = roads.features.slice(0,200)
+  //   billboards.features = billboards.features.slice(0, 200)
+  // }
 
 	return (
 		<>
@@ -24,10 +29,13 @@ export default async function IntensityScore() {
 						className='h-full'
 						session={session}
 					/>
-					<div className='flex flex-col items-center justify-start gap-4 w-full mx-auto '>
-						<h5 className=" text-center font-semibold leading-7 text-white w-full mt-4 ">MetricOOH Intensity Score</h5> 
+					<div className='flex flex-col items-center justify-start w-full mx-auto '>
+            <div className="w-full flex md:flex-row items-center justify-center flex-col-reverse md:justify-start md:items-center gap-4 mt-4 mb-4">
+						  <h5 className="font-semibold leading-7 ml-10 text-white  ">MetricOOH Intensity Score</h5> 
+              <Image src={'/metricOOH.png'} width={200} height={150} priority alt="metricOOH logo"/>
+            </div>
 						<div className='w-[95%]'>
-							<Map roadData={roads} billboardData={billboards} originCoordinates={[ -97.524757, 35.473641]}
+							<Map roadData={reducedRoads} billboardData={reducedBillboards} originCoordinates={[ -97.524757, 35.473641]}
 								pointLayout={{
 									"text-field": "{place}",
 									"text-font": ["Open Sans Semibold"], 
