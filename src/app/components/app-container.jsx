@@ -4,9 +4,8 @@ import React, { useState, useCallback, useEffect } from 'react'
 import LoadingSpinner from './loadingSpinner'
 
 export default function AppContainer({session, src}) {
-  const env = process.env
 
-  const supabase = createClientComponentClient({ cookieOptions: {domain: env.NEXT_PUBLIC_COOKIE_DOMAIN, path: "/"} })
+  const supabase = createClientComponentClient({ cookieOptions: {domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN, path: "/"} })
   const [loading, setLoading] = useState(true)
   const [companyId, setCompanyId] = useState(null)
   const user = session?.user

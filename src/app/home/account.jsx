@@ -6,9 +6,8 @@ import Image from 'next/image';
 import AppContainer from "../components/app-container";
 
 export default function AccountPage({ session }) {
-  const env = process.env
   
-  const supabase = createClientComponentClient({cookieOptions: {domain: env.NEXT_PUBLIC_COOKIE_DOMAIN, path: "/"}});
+  const supabase = createClientComponentClient({cookieOptions: {domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN, path: "/"}});
   const user = session?.user;
 
   const src = "https://oohinfo.retool.com/embedded/public/1906c41e-d33f-4be1-b89b-6b89409e22bc"
@@ -18,7 +17,7 @@ export default function AccountPage({ session }) {
       if (error) {
         throw error;
       }
-      window.location.href = env.NEXT_PUBLIC_AUTH_DOMAIN;
+      window.location.href = process.env.NEXT_PUBLIC_AUTH_DOMAIN;
     } catch (error) {
       console.error('Error signing out:', error.message);
     }

@@ -18,10 +18,9 @@ function classNames(...classes) {
 }
 
 export default function Sidebar({ session }) {
-  const env = process.env
   
   const currentRoute = usePathname()
-  const supabase = createClientComponentClient({ cookieOptions: {domain: env.NEXT_PUBLIC_COOKIE_DOMAIN, path: "/"} })
+  const supabase = createClientComponentClient({ cookieOptions: {domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN, path: "/"} })
   const [loading, setLoading] = useState(true)
   const [fullname, setFullname] = useState(null)
   const [avatarUrl, setAvatarUrl] = useState(null)
