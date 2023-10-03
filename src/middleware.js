@@ -12,7 +12,7 @@ export async function middleware(req) {
   } = await supabase.auth.getUser()
 
   if(!user) {
-    return NextResponse.redirect(new URL(process.env.NEXT_PUBLIC_AUTH_DOMAIN+'?redirect_url='+process.nv.NEXT_PUBLIC_REDIRECT_DOMAIN+'/home'))
+    return NextResponse.redirect(new URL(process.env.NEXT_PUBLIC_AUTH_DOMAIN+'?redirect_url='+process.env.NEXT_PUBLIC_REDIRECT_DOMAIN+'/home'))
   }
 
   if(user) {
