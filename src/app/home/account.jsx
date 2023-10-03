@@ -4,7 +4,9 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Button } from '@mantine/core';
 
 export default function AccountPage({ session }) {
-  const supabase = createClientComponentClient( { cookieOptions: {domain: "automatearmy.com", path: "/"} } );
+  const env = process.env
+  
+  const supabase = createClientComponentClient({cookieOptions: {domain: env.NEXT_PUBLIC_COOKIE_DOMAIN, path: "/"}});
   const user = session?.user;
 
   const handleSignOut = async () => {
@@ -13,7 +15,7 @@ export default function AccountPage({ session }) {
       if (error) {
         throw error;
       }
-      window.location.href = 'https://auth.automatearmy.com/';
+      window.location.href = env.NEXT_PUBLIC_AUTH_DOMAIN;
     } catch (error) {
       console.error('Error signing out:', error.message);
     }

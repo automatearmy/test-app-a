@@ -18,14 +18,16 @@ function classNames(...classes) {
 }
 
 export default function Sidebar({ session }) {
+  const env = process.env
+  
   const currentRoute = usePathname()
-  const supabase = createClientComponentClient({ cookieOptions: {domain: "automatearmy.com", path: "/"} })
+  const supabase = createClientComponentClient({ cookieOptions: {domain: env.NEXT_PUBLIC_COOKIE_DOMAIN, path: "/"} })
   const [loading, setLoading] = useState(true)
   const [fullname, setFullname] = useState(null)
   const [avatarUrl, setAvatarUrl] = useState(null)
   const user = session?.user
 
-  console.log("User: " + user)
+  //console.log("User: " + user)
 
   const getProfile = useCallback(async () => {
     try {

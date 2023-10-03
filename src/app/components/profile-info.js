@@ -4,7 +4,9 @@ import React, { useEffect, useState, useCallback } from 'react'
 import Image from 'next/image'
 
 export default function ProfileInfo({ session }) {
-    const supabase = createClientComponentClient({ cookieOptions: {domain: "automatearmy.com", path: "/"} })
+  const env = process.env
+  
+  const supabase = createClientComponentClient({ cookieOptions: {domain: env.NEXT_PUBLIC_COOKIE_DOMAIN, path: "/"} })
     const [loading, setLoading] = useState(true)
     const [fullname, setFullname] = useState(null)
     const [avatarUrl, setAvatarUrl] = useState(null)
