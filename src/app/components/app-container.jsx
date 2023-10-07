@@ -8,6 +8,7 @@ export default function AppContainer({session, src}) {
   const supabase = createClientComponentClient({ cookieOptions: {domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN, path: "/"} })
   const [loading, setLoading] = useState(true)
   const [companyId, setCompanyId] = useState(null)
+  const [contactId, setContactId] = useState(null)
   const user = session?.user
 
   const getCompanyId = useCallback(async () => {
@@ -16,8 +17,8 @@ export default function AppContainer({session, src}) {
 
       let { data, error, status } = await supabase
         .from('profiles')
-        .select(`company_id`)
-        .eq('id', user?.id)
+        .select(`company_id`, 'contact_id')
+        .eq('user_id', user?.id)
         .single()
 
       if (error && status !== 406) {
@@ -26,6 +27,7 @@ export default function AppContainer({session, src}) {
 
       if (data) {
         setCompanyId(data.company_id)
+        setContactId(data.contact_id)
       }
     } catch (error) {
       alert('Error loading user data!')
@@ -45,7 +47,7 @@ export default function AppContainer({session, src}) {
       </div>
     )
   }
-  const appUrl = `${src}?company_id=${companyId}&user_id=${user?.id}`
+  const appUrl = `${src}?company_id=${companyId}&user_id=${user?.id}&contact_id=${contactId}`
 
   return (
     <>
