@@ -35,18 +35,20 @@ export default function Sidebar({ session }) {
       let { data, error, status } = await supabase
         .from('profiles')
         .select(`full_name, avatar_url`)
-        .eq('id', user?.id)
+        .eq('user_id', user?.id)
         .single()
 
       if (error && status !== 406) {
         throw error
       }
 
+
       if (data) {
         setFullname(data.full_name)
         setAvatarUrl(data.avatar_url)
       }
     } catch (error) {
+
       alert('Error loading user data!')
     } finally {
       setLoading(false)
@@ -119,6 +121,7 @@ export default function Sidebar({ session }) {
                   alt="Profile photo"
                   className='rounded-full'
                 />
+                
               ) : (
                 <img
                   className="h-8 w-8 rounded-full bg-gray-50"
