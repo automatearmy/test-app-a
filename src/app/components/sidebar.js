@@ -113,25 +113,31 @@ export default function Sidebar({ session }) {
               className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-amber-200"
             >
               {avatarUrl ? (
-                <Image 
-                  src={avatarUrl}
-                  
-                  width={32}
-                  height={32}
-                  alt="Profile photo"
-                  className='rounded-full'
-                />
+                
+                <>       
+                  <Image 
+                    src={avatarUrl}
+                    
+                    width={32}
+                    height={32}
+                    alt="Profile photo"
+                    className='rounded-full'
+                  />
+                  <span className="sr-only">Your profile</span>
+                  <span aria-hidden="true">{fullname}</span>
+                </>
                 
               ) : (
-                <img
-                  className="h-8 w-8 rounded-full bg-gray-50"
-                  src=""
-                  alt=""
-                />
+                <div className="flex items-center">
+                  <div className="h-8 w-8 rounded-full bg-gray-400 mr-2 animate-pulse"></div>
+                  <div>
+                    <div className="h-4 w-20 bg-gray-400 rounded animate-pulse"></div>
+                    <div className="h-4 w-24 bg-gray-400 rounded mt-1 animate-pulse"></div>
+                  </div>
+                </div>
               )}
               {/* h = 8 w = 8 */}
-              <span className="sr-only">Your profile</span>
-              <span aria-hidden="true">{fullname ?? 'User'}</span>
+           
             </a>
           </li>
         </ul>
