@@ -17,7 +17,7 @@ export default function AppContainer({session, src}) {
 
       let { data, error, status } = await supabase
         .from('profiles')
-        .select(`company_id`, 'contact_id')
+        .select('company_id,contact_id')
         .eq('user_id', user?.id)
         .single()
 
