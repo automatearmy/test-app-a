@@ -6,12 +6,17 @@ import {
   UsersIcon,
   ServerIcon,
   StarIcon,
-  MapIcon
+  MapIcon,
+  ArrowLeftOnRectangleIcon,
+  ArrowRightOnRectangleIcon
+
 } from '@heroicons/react/24/outline'
+
 import Image from 'next/image'
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import React, { useEffect, useState, useCallback } from 'react'
+import { IconArrowLeft } from '@tabler/icons-react';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -25,7 +30,7 @@ export default function Sidebar({ session }) {
   const [fullname, setFullname] = useState(null)
   const [avatarUrl, setAvatarUrl] = useState(null)
   const user = session?.user
-
+  const route = useRouter()
   //console.log("User: " + user)
 
   const getProfile = useCallback(async () => {
@@ -58,7 +63,11 @@ export default function Sidebar({ session }) {
   useEffect(() => {
     getProfile()
   }, [user, getProfile])
+  async function logoutHandler() {
+    await supabase.auth.signOut()
+    route.push('https://auth.oohinfo.org/')
 
+  }
   const navigation = [
     { name: 'Home', href: '/', icon: HomeIcon, current: currentRoute === '/' },
     { name: 'PerView Overview', href: '/overview', icon: InformationCircleIcon, current: currentRoute === '/overview' },
@@ -125,6 +134,7 @@ export default function Sidebar({ session }) {
                   />
                   <span className="sr-only">Your profile</span>
                   <span aria-hidden="true">{fullname}</span>
+                 
                 </>
                 
               ) : (
@@ -139,6 +149,14 @@ export default function Sidebar({ session }) {
               {/* h = 8 w = 8 */}
            
             </a>
+            {user && <div className="flex justify-start gap-2 mt-2 w-[80%] mx-auto ">
+              <button className="flex gap-2 hover:cursor-pointer" onClick={logoutHandler}>
+                <ArrowLeftOnRectangleIcon className="h-6 w-6 text-black hover:cursor-pointer" />
+                <span aria-hidden="true">Logout</span>
+              </button>
+            </div>}
+
+
           </li>
         </ul>
       </nav>
