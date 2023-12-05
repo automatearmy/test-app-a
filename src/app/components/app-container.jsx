@@ -5,16 +5,17 @@ import LoadingSpinner from './loadingSpinner'
 import { CompaniesSelect } from './companiesSelect'
 import { lastCompanySelectedKey } from '@/utils/localStorage'
 import { useRouter } from 'next/navigation'
-
+import { NoData } from './noData'
 export default function AppContainer({session, src}) {
 
 
   const supabase = createClientComponentClient({ cookieOptions: {domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN, path: "/"} })
   const [loading, setLoading] = useState(true)
   const [currentCompanyId, setCurrentCompanyId] = useState(null)
+  const [noCompanyData, setNoCompanyData] = useState(false)
+  const [error, setError] = useState(false)
   const [companies, setCompanies] = useState([])
   const [contactId, setContactId] = useState(null)
-  const route = useRouter()
   const user = session?.user
   // console.log("user ==>", user)
   const getCompanyId = useCallback(async () => {
@@ -30,13 +31,16 @@ export default function AppContainer({session, src}) {
         .from('profile_company')
         .select('id,company_id,company_name')
         .eq('profile_id', data.id) 
-     
+        
         
         if(getAllcompanies.data.length < 1) {
-          route.push(`https://auth.oohinfo.org/awaiting`)
+
+          setNoCompanyData(true)
           return;
         }
         if ( (error && status !== 406) || (getAllcompanies.error && getAllcompanies.status !== 406)) {
+          setError(true)
+
           throw error
         }
         setCompanies(getAllcompanies.data)
@@ -49,8 +53,8 @@ export default function AppContainer({session, src}) {
         setContactId(data.contact_id)
       }
     } catch (error) {
-      console.log(error)
-      alert('Error loading user data!')
+      setError(true)
+      // alert('Error loading user data!')
     } finally {
       setLoading(false)
     }
@@ -75,17 +79,23 @@ export default function AppContainer({session, src}) {
   }
   const appUrl = `${src}?company_id=${currentCompanyId}&user_id=${user?.id}&contact_id=${contactId}`
   return (
-
+    
      <div className=" w-full  flex flex-col bg-[#3A435F]">
-      <div className='ml-4'>
-        <CompaniesSelect 
-        defaultValue={currentCompanyId}
-        companies={companies} 
-        onCompanyChange={(event) => {
-          handleCompanyChange(event.target.value)
-        }}/>
-      </div>
-      {<iframe src={appUrl} width="100%" height="100%" className='bg-[#3a435f]'></iframe>}
+      {noCompanyData || error ?  <main ><NoData isError={error}/></main> : (
+        <>
+          <div className='ml-4'>
+            <CompaniesSelect 
+            defaultValue={currentCompanyId}
+            companies={companies} 
+            onCompanyChange={(event) => {
+              handleCompanyChange(event.target.value)
+            }}/>
+          </div>
+          <iframe src={appUrl} width="100%" height="100%" className='bg-[#3a435f]'></iframe>
+        </>
+      )}
+      
+
     </div>
    
   )
